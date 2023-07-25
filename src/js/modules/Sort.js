@@ -14,7 +14,7 @@ export default class Sort {
 
     const button = document.querySelector("[data-play]");
     button.addEventListener("click", () => {
-      this.insertionSort(container);
+      this.bubbleSort(container);
     });
   }
 
@@ -31,7 +31,6 @@ export default class Sort {
 
   async insertionSort(container) {
     const lista = Array.from(container.querySelectorAll(".element-bar"));
-    const audio = new Audio("meu_audio.mp3");
 
     for (let i = 1; i < lista.length; i++) {
       let j = i - 1;
@@ -55,6 +54,27 @@ export default class Sort {
     }
 
     console.log(lista.map((item) => item.style.height));
+    return lista;
+  }
+
+  async bubbleSort(container) {
+    const lista = Array.from(container.querySelectorAll(".element-bar"));
+
+    for (let i = lista.length; i > 0; i--) {
+      for (let j = 0; j < lista.length - 1; j++) {
+        if (
+          +lista[j].style.height.replace("px", "") >
+          +lista[j + 1].style.height.replace("px", "")
+        ) {
+          await Dom.swapItems(lista[j + 1], lista[j]);
+
+          const aux = lista[j];
+          lista[j] = lista[j + 1];
+          lista[j + 1] = aux;
+        }
+      }
+    }
+
     return lista;
   }
 }
