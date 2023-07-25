@@ -14,14 +14,14 @@ export default class Sort {
 
     const button = document.querySelector("[data-play]");
     button.addEventListener("click", () => {
-      this.selectionSort(container);
+      this.quickSort(container);
     });
   }
 
   createElements(amount) {
     const array = [];
     for (let i = 0; i < amount; i++) {
-      const altura = Math.floor(Math.random() * (600 - 15) + 15);
+      const altura = Math.floor(Math.random() * (650 - 15) + 15);
       const element = document.createElement("div");
       element.innerHTML = `<div class="element-bar" style="height: ${altura}px"></div>`;
       array.push(element);
@@ -53,7 +53,6 @@ export default class Sort {
       }
     }
 
-    console.log(lista.map((item) => item.style.height));
     return lista;
   }
 
@@ -95,6 +94,42 @@ export default class Sort {
         }
       }
     }
-    console.log(lista);
+  }
+
+  async quickSort(container) {
+    const lista = Array.from(container.querySelectorAll(".element-bar"));
+    const quickSortArray = async (arr) => {
+      if (arr.length <= 1) {
+        return arr;
+      }
+
+      const pivot = arr[0];
+      const leftArr = [];
+      const rightArr = [];
+
+      for (let i = 1; i < arr.length; i++) {
+        if (
+          +arr[i].style.height.replace("px", "") <
+          +pivot.style.height.replace("px", "")
+        ) {
+          await Dom.throwLeft(i, pivot, arr, leftArr);
+          leftArr.push(arr[i]);
+        } else {
+          await Dom.throwRight(
+            i,
+            rightArr[rightArr.length - 1]
+              ? rightArr[rightArr.length - 1]
+              : pivot,
+            arr
+          );
+          rightArr.push(arr[i]);
+        }
+      }
+
+      const x = await quickSortArray(leftArr);
+      const y = await quickSortArray(rightArr);
+      return [...x, pivot, ...y];
+    };
+    await quickSortArray(lista);
   }
 }

@@ -6,7 +6,30 @@ export default class Dom {
     return new Promise((resolve) => {
       fromParent.appendChild(to);
       toParent.appendChild(from);
-      setTimeout(resolve, 10); // Wait for 1 second (1000 milliseconds)
+      setTimeout(resolve, 100); // Wait for 1 second (1000 milliseconds)
+    });
+  }
+
+  static throwLeft(item, pivot, array) {
+    const parent = array[item].parentElement;
+
+    // Pauses the loop to allow the user to see changes
+    return new Promise((resolve) => {
+      pivot.parentNode.parentNode.insertBefore(parent, pivot.parentNode);
+      setTimeout(resolve, 10);
+    });
+  }
+
+  static throwRight(item, lastRightArrayItem, array) {
+    const parent = array[item].parentElement;
+
+    // Pauses the loop to allow the user to see changes
+    return new Promise((resolve) => {
+      lastRightArrayItem.parentNode.parentNode.insertBefore(
+        parent,
+        lastRightArrayItem.parentNode.nextSibling
+      );
+      setTimeout(resolve, 10);
     });
   }
 }
