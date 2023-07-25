@@ -14,7 +14,7 @@ export default class Sort {
 
     const button = document.querySelector("[data-play]");
     button.addEventListener("click", () => {
-      this.bubbleSort(container);
+      this.selectionSort(container);
     });
   }
 
@@ -76,5 +76,25 @@ export default class Sort {
     }
 
     return lista;
+  }
+
+  async selectionSort(container) {
+    const lista = Array.from(container.querySelectorAll(".element-bar"));
+
+    for (let i = 0; i < lista.length; i++) {
+      for (let j = i + 1; j < lista.length; j++) {
+        if (
+          +lista[i].style.height.replace("px", "") >
+          +lista[j].style.height.replace("px", "")
+        ) {
+          await Dom.swapItems(lista[i], lista[j]);
+
+          const aux = lista[i];
+          lista[i] = lista[j];
+          lista[j] = aux;
+        }
+      }
+    }
+    console.log(lista);
   }
 }

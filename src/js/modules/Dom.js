@@ -6,7 +6,7 @@ export default class Dom {
     return new Promise((resolve) => {
       fromParent.appendChild(to);
       toParent.appendChild(from);
-      setTimeout(resolve, 1000); // Wait for 1 second (1000 milliseconds)
+      setTimeout(resolve, 10); // Wait for 1 second (1000 milliseconds)
     });
   }
 }
