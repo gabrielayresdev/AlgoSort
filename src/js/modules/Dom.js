@@ -32,4 +32,15 @@ export default class Dom {
       setTimeout(resolve, 10);
     });
   }
+
+  static turnToMerged(array, [array1, array2]) {
+    const originalPosition = array1.concat(array2);
+    originalPosition.forEach((item, index) => {
+      const toParent = item.parentElement;
+      const fromParent = array[index].parentElement;
+
+      toParent.appendChild(array[index]);
+      fromParent.appendChild(item);
+    });
+  }
 }

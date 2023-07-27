@@ -14,7 +14,7 @@ export default class Sort {
 
     const button = document.querySelector("[data-play]");
     button.addEventListener("click", () => {
-      this.quickSort(container);
+      this.mergeSort(container);
     });
   }
 
@@ -131,5 +131,47 @@ export default class Sort {
       return [...x, pivot, ...y];
     };
     await quickSortArray(lista);
+  }
+
+  mergeSort(container) {
+    const lista = Array.from(container.querySelectorAll(".element-bar"));
+
+    function merge(x, y) {
+      let array = [];
+      let index1 = 0;
+      let index2 = 0;
+      const total = x.length + y.length;
+
+      while (array.length < total) {
+        if (index1 === x.length) {
+          array = array.concat(y.slice(index2));
+        } else if (index2 === y.length) {
+          array = array.concat(x.slice(index1));
+        } else if (
+          +x[index1].style.height.replace("px", "") <
+          +y[index2].style.height.replace("px", "")
+        ) {
+          array.push(x[index1]);
+          index1++;
+        } else {
+          array.push(y[index2]);
+          index2++;
+        }
+      }
+      return array;
+    }
+
+    function mergeSortArray(array) {
+      if (array.length > 1) {
+        const meio = Math.floor(array.length / 2);
+        const part1 = mergeSortArray(array.slice(0, meio));
+        const part2 = mergeSortArray(array.slice(meio, array.length));
+
+        return merge(part1, part2);
+      }
+
+      return array;
+    }
+    console.log(mergeSortArray(lista));
   }
 }
