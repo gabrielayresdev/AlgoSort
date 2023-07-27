@@ -158,6 +158,7 @@ export default class Sort {
           index2++;
         }
       }
+      Dom.turnToMerged(array, [x, y]);
       return array;
     }
 
@@ -172,6 +173,6 @@ export default class Sort {
 
       return array;
     }
-    console.log(mergeSortArray(lista));
+    mergeSortArray(lista);
   }
 }

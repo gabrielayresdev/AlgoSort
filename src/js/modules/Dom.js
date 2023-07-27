@@ -34,13 +34,11 @@ export default class Dom {
   }
 
   static turnToMerged(array, [array1, array2]) {
-    const originalPosition = array1.concat(array2);
+    const originalPosition = array1
+      .concat(array2)
+      .map((item) => item.parentNode);
     originalPosition.forEach((item, index) => {
-      const toParent = item.parentElement;
-      const fromParent = array[index].parentElement;
-
-      toParent.appendChild(array[index]);
-      fromParent.appendChild(item);
+      item.appendChild(array[index]);
     });
   }
 }
