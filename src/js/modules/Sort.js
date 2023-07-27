@@ -1,4 +1,5 @@
 import Dom from "./Dom.js";
+import sleep from "./sleep.js";
 
 export default class Sort {
   constructor(amount) {
@@ -55,7 +56,8 @@ export default class Sort {
           +lista[j].style.height.replace("px", "")
       ) {
         // Troca os itens na UI
-        await Dom.swapItems(lista[j], lista[j + 1]);
+        await sleep(10);
+        Dom.swapItems(lista[j], lista[j + 1]);
 
         // Troca os itens no array
         const aux = lista[j];
@@ -78,7 +80,8 @@ export default class Sort {
           +lista[j].style.height.replace("px", "") >
           +lista[j + 1].style.height.replace("px", "")
         ) {
-          await Dom.swapItems(lista[j + 1], lista[j]);
+          await sleep(10);
+          Dom.swapItems(lista[j + 1], lista[j]);
 
           const aux = lista[j];
           lista[j] = lista[j + 1];
@@ -99,7 +102,8 @@ export default class Sort {
           +lista[i].style.height.replace("px", "") >
           +lista[j].style.height.replace("px", "")
         ) {
-          await Dom.swapItems(lista[i], lista[j]);
+          await sleep(10);
+          Dom.swapItems(lista[i], lista[j]);
 
           const aux = lista[i];
           lista[i] = lista[j];
