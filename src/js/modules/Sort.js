@@ -6,31 +6,44 @@ export default class Sort {
   }
 
   alocaArray(seletor) {
-    const container = document.querySelector(seletor);
-    this.elements.forEach((element) => {
-      const clone = element.cloneNode(true);
-      container.appendChild(clone);
+    const containers = document.querySelectorAll(seletor);
+    containers.forEach((container) => {
+      this.elements.forEach((element) => {
+        const clone = element.cloneNode(true);
+        container.appendChild(clone);
+      });
     });
 
     const button = document.querySelector("[data-play]");
     button.addEventListener("click", () => {
-      this.mergeSort(container);
+      const area = document.querySelector(".sort-area");
+      this.selectionSort(area.querySelector("[data-sort=selectionSort]"));
+      this.bubbleSort(area.querySelector("[data-sort=bubbleSort]"));
+      this.insertionSort(area.querySelector("[data-sort=insertionSort]"));
+      this.quickSort(area.querySelector("[data-sort=quickSort]"));
+      this.mergeSort(area.querySelector("[data-sort=mergeSort]"));
     });
   }
 
   createElements(amount) {
     const array = [];
+    const { height, padding } = window.getComputedStyle(
+      document.querySelector(".sort-area")
+    );
+
+    const maxHeight = parseFloat(height) - parseFloat(padding) - 30;
+
     for (let i = 0; i < amount; i++) {
-      const altura = Math.floor(Math.random() * (650 - 15) + 15);
+      const altura = Math.floor(Math.random() * (maxHeight - 5) + 5);
       const element = document.createElement("div");
-      element.innerHTML = `<div class="element-bar" style="height: ${altura}px"></div>`;
+      element.innerHTML = `<div class="sort-element" style="height: ${altura}px"></div>`;
       array.push(element);
     }
     return array;
   }
 
   async insertionSort(container) {
-    const lista = Array.from(container.querySelectorAll(".element-bar"));
+    const lista = Array.from(container.querySelectorAll(".sort-element"));
 
     for (let i = 1; i < lista.length; i++) {
       let j = i - 1;
@@ -57,7 +70,7 @@ export default class Sort {
   }
 
   async bubbleSort(container) {
-    const lista = Array.from(container.querySelectorAll(".element-bar"));
+    const lista = Array.from(container.querySelectorAll(".sort-element"));
 
     for (let i = lista.length; i > 0; i--) {
       for (let j = 0; j < lista.length - 1; j++) {
@@ -78,7 +91,7 @@ export default class Sort {
   }
 
   async selectionSort(container) {
-    const lista = Array.from(container.querySelectorAll(".element-bar"));
+    const lista = Array.from(container.querySelectorAll(".sort-element"));
 
     for (let i = 0; i < lista.length; i++) {
       for (let j = i + 1; j < lista.length; j++) {
@@ -97,7 +110,7 @@ export default class Sort {
   }
 
   async quickSort(container) {
-    const lista = Array.from(container.querySelectorAll(".element-bar"));
+    const lista = Array.from(container.querySelectorAll(".sort-element"));
     const quickSortArray = async (arr) => {
       if (arr.length <= 1) {
         return arr;
@@ -134,7 +147,7 @@ export default class Sort {
   }
 
   mergeSort(container) {
-    const lista = Array.from(container.querySelectorAll(".element-bar"));
+    const lista = Array.from(container.querySelectorAll(".sort-element"));
 
     function merge(x, y) {
       let array = [];

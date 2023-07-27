@@ -3,11 +3,8 @@ export default class Dom {
     const fromParent = from.parentElement;
     const toParent = to.parentElement;
 
-    return new Promise((resolve) => {
-      fromParent.appendChild(to);
-      toParent.appendChild(from);
-      setTimeout(resolve, 100); // Wait for 1 second (1000 milliseconds)
-    });
+    fromParent.appendChild(to);
+    toParent.appendChild(from);
   }
 
   static throwLeft(item, pivot, array) {
