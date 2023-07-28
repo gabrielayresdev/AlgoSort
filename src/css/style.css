@@ -11,19 +11,28 @@
   grid-template-columns: repeat(auto-fit, minmax(1px, 1fr));
   gap: 2px;
 
-  align-items: end;
+  align-items: flex-end;
   justify-content: space-between;
 
   width: 20%;
+  /* height: 200px; */
   aspect-ratio: 1 / 1;
+
+  overflow: hidden;
+
   padding: 5px;
   border: 1px solid black;
 }
 
+/* .sort-container div {
+  position: relative;
+  bottom: 0;
+} */
+
 .sort-element {
   display: block;
   width: 100%;
-  background-color: #272727;
+  background-color: #707070;
 }
 
 i {

@@ -3,11 +3,15 @@ import sleep from "./sleep.js";
 
 export default class Sort {
   constructor(amount) {
-    this.elements = this.createElements(amount);
+    this.elements = Dom.createElements(amount);
+    this.animationTime = 10;
   }
 
-  alocaArray(seletor) {
-    const containers = document.querySelectorAll(seletor);
+  init() {
+    // Seleciona todos os quadrados que receberão os elementos para ordenar
+    const containers = document.querySelectorAll(".sort-container");
+
+    // Adiciona um clone de cada elementos aos containers
     containers.forEach((container) => {
       this.elements.forEach((element) => {
         const clone = element.cloneNode(true);
@@ -15,36 +19,38 @@ export default class Sort {
       });
     });
 
+    // Adiciona a funcionalidade de iniciar todos os algoritmos ao ícone de play
     const button = document.querySelector("[data-play]");
     button.addEventListener("click", () => {
       const area = document.querySelector(".sort-area");
-      this.selectionSort(area.querySelector("[data-sort=selectionSort]"));
-      this.bubbleSort(area.querySelector("[data-sort=bubbleSort]"));
-      this.insertionSort(area.querySelector("[data-sort=insertionSort]"));
-      this.quickSort(area.querySelector("[data-sort=quickSort]"));
-      this.mergeSort(area.querySelector("[data-sort=mergeSort]"));
+
+      // Inicia as funções de sort com os containers de cada um como contexto e tempo de animação como parâmetro
+      this.selectionSort.call(
+        area.querySelector("[data-sort=selectionSort]"),
+        this.animationTime
+      );
+      this.bubbleSort.call(
+        area.querySelector("[data-sort=bubbleSort]"),
+        this.animationTime
+      );
+      this.insertionSort.call(
+        area.querySelector("[data-sort=insertionSort]"),
+        this.animationTime
+      );
+      this.quickSort.call(
+        area.querySelector("[data-sort=quickSort]"),
+        this.animationTime
+      );
+      this.mergeSort.call(
+        area.querySelector("[data-sort=mergeSort]"),
+        this.animationTime
+      );
     });
   }
 
-  createElements(amount) {
-    const array = [];
-    const { height, padding } = window.getComputedStyle(
-      document.querySelector(".sort-area")
-    );
-
-    const maxHeight = parseFloat(height) - parseFloat(padding) - 30;
-
-    for (let i = 0; i < amount; i++) {
-      const altura = Math.floor(Math.random() * (maxHeight - 5) + 5);
-      const element = document.createElement("div");
-      element.innerHTML = `<div class="sort-element" style="height: ${altura}px"></div>`;
-      array.push(element);
-    }
-    return array;
-  }
-
-  async insertionSort(container) {
-    const lista = Array.from(container.querySelectorAll(".sort-element"));
+  // Realiza o insertionSort dos elementos
+  async insertionSort(time) {
+    const lista = Array.from(this.querySelectorAll(".sort-element"));
 
     for (let i = 1; i < lista.length; i++) {
       let j = i - 1;
@@ -52,11 +58,11 @@ export default class Sort {
       // Troca os elementos enquanto o array é percorrido do fim para o começo e o elemento no índice [x] é menor que o elemento no índice [x - 1]
       while (
         j > -1 &&
-        +lista[j + 1].style.height.replace("px", "") <
-          +lista[j].style.height.replace("px", "")
+        parseFloat(lista[j + 1].style.height) <
+          parseFloat(lista[j].style.height)
       ) {
         // Troca os itens na UI
-        await sleep(10);
+        await sleep(time);
         Dom.swapItems(lista[j], lista[j + 1]);
 
         // Troca os itens no array
@@ -71,16 +77,17 @@ export default class Sort {
     return lista;
   }
 
-  async bubbleSort(container) {
-    const lista = Array.from(container.querySelectorAll(".sort-element"));
+  // Realiza o bubbleSort dos elementos
+  async bubbleSort(time) {
+    const lista = Array.from(this.querySelectorAll(".sort-element"));
 
     for (let i = lista.length; i > 0; i--) {
       for (let j = 0; j < lista.length - 1; j++) {
         if (
-          +lista[j].style.height.replace("px", "") >
-          +lista[j + 1].style.height.replace("px", "")
+          parseFloat(lista[j].style.height) >
+          parseFloat(lista[j + 1].style.height)
         ) {
-          await sleep(10);
+          await sleep(time);
           Dom.swapItems(lista[j + 1], lista[j]);
 
           const aux = lista[j];
@@ -93,16 +100,16 @@ export default class Sort {
     return lista;
   }
 
-  async selectionSort(container) {
-    const lista = Array.from(container.querySelectorAll(".sort-element"));
+  async selectionSort(time) {
+    const lista = Array.from(this.querySelectorAll(".sort-element"));
 
     for (let i = 0; i < lista.length; i++) {
       for (let j = i + 1; j < lista.length; j++) {
         if (
-          +lista[i].style.height.replace("px", "") >
-          +lista[j].style.height.replace("px", "")
+          parseFloat(lista[i].style.height) > parseFloat(lista[j].style.height)
         ) {
-          await sleep(10);
+          // Pausa o algoritmo em x tempo
+          await sleep(time);
           Dom.swapItems(lista[i], lista[j]);
 
           const aux = lista[i];
@@ -113,8 +120,9 @@ export default class Sort {
     }
   }
 
-  async quickSort(container) {
-    const lista = Array.from(container.querySelectorAll(".sort-element"));
+  // Realiza o quickSort dos elementos
+  async quickSort(time) {
+    const lista = Array.from(this.querySelectorAll(".sort-element"));
     const quickSortArray = async (arr) => {
       if (arr.length <= 1) {
         return arr;
@@ -125,14 +133,13 @@ export default class Sort {
       const rightArr = [];
 
       for (let i = 1; i < arr.length; i++) {
-        if (
-          +arr[i].style.height.replace("px", "") <
-          +pivot.style.height.replace("px", "")
-        ) {
-          await Dom.throwLeft(i, pivot, arr, leftArr);
+        if (parseFloat(arr[i].style.height) < parseFloat(pivot.style.height)) {
+          await sleep(time);
+          Dom.throwLeft(i, pivot, arr, leftArr);
           leftArr.push(arr[i]);
         } else {
-          await Dom.throwRight(
+          await sleep(time);
+          Dom.throwRight(
             i,
             rightArr[rightArr.length - 1]
               ? rightArr[rightArr.length - 1]
@@ -150,10 +157,11 @@ export default class Sort {
     await quickSortArray(lista);
   }
 
-  mergeSort(container) {
-    const lista = Array.from(container.querySelectorAll(".sort-element"));
+  // Realiza o mergeSort dos elementos
+  async mergeSort(time) {
+    const lista = Array.from(this.querySelectorAll(".sort-element"));
 
-    function merge(x, y) {
+    async function merge(x, y) {
       let array = [];
       let index1 = 0;
       let index2 = 0;
@@ -165,8 +173,8 @@ export default class Sort {
         } else if (index2 === y.length) {
           array = array.concat(x.slice(index1));
         } else if (
-          +x[index1].style.height.replace("px", "") <
-          +y[index2].style.height.replace("px", "")
+          parseFloat(x[index1].style.height) <
+          parseFloat(y[index2].style.height)
         ) {
           array.push(x[index1]);
           index1++;
@@ -175,21 +183,23 @@ export default class Sort {
           index2++;
         }
       }
-      Dom.turnToMerged(array, [x, y]);
+
+      await Dom.turnToMerged(array, [x, y], time);
       return array;
     }
 
-    function mergeSortArray(array) {
+    async function mergeSortArray(array) {
       if (array.length > 1) {
         const meio = Math.floor(array.length / 2);
-        const part1 = mergeSortArray(array.slice(0, meio));
-        const part2 = mergeSortArray(array.slice(meio, array.length));
+        const part1 = await mergeSortArray(array.slice(0, meio));
+        const part2 = await mergeSortArray(array.slice(meio, array.length));
 
-        return merge(part1, part2);
+        const retorno = await merge(part1, part2);
+        return retorno;
       }
 
       return array;
     }
-    mergeSortArray(lista);
+    await mergeSortArray(lista);
   }
 }
