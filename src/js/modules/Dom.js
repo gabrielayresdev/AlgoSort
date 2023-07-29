@@ -72,4 +72,17 @@ export default class Dom {
     }
     return array;
   }
+
+  static insertElements(elements) {
+    // Seleciona todos os quadrados que receberão os elementos para ordenar
+    const containers = document.querySelectorAll(".sort-container");
+
+    // Adiciona um clone de cada elementos aos containers
+    containers.forEach((container) => {
+      elements.forEach((element) => {
+        const clone = element.cloneNode(true);
+        container.appendChild(clone);
+      });
+    });
+  }
 }

@@ -4,24 +4,15 @@ import sleep from "./sleep.js";
 export default class Sort {
   constructor(amount) {
     this.elements = Dom.createElements(amount);
-    this.animationTime = 50;
+    this.animationTime = 10;
   }
 
   init() {
-    // Seleciona todos os quadrados que receberão os elementos para ordenar
-    const containers = document.querySelectorAll(".sort-container");
-
-    // Adiciona um clone de cada elementos aos containers
-    containers.forEach((container) => {
-      this.elements.forEach((element) => {
-        const clone = element.cloneNode(true);
-        container.appendChild(clone);
-      });
-    });
+    Dom.insertElements(this.elements);
 
     // Adiciona a funcionalidade de iniciar todos os algoritmos ao ícone de play
-    const button = document.querySelector("[data-play=all]");
-    button.addEventListener("click", () => {
+    const buttonAll = document.querySelector("[data-play=all]");
+    buttonAll.addEventListener("click", () => {
       const area = document.querySelector(".sort-area");
 
       // Inicia as funções de sort com os containers de cada um como contexto e tempo de animação como parâmetro
@@ -43,6 +34,42 @@ export default class Sort {
       );
       this.mergeSort.call(
         area.querySelector("[data-sort=mergeSort]"),
+        this.animationTime
+      );
+    });
+
+    const buttonBubble = document.querySelector("[data-play=bubbleSort]");
+    const buttonSelection = document.querySelector("[data-play=selectionSort]");
+    const buttonInsertion = document.querySelector("[data-play=insertionSort]");
+    const buttonQuick = document.querySelector("[data-play=quickSort]");
+    const buttonMerge = document.querySelector("[data-play=mergeSort]");
+    buttonBubble.addEventListener("click", () => {
+      this.bubbleSort.call(
+        document.querySelector("[data-sort=bubbleSort]"),
+        this.animationTime
+      );
+    });
+    buttonSelection.addEventListener("click", () => {
+      this.selectionSort.call(
+        document.querySelector("[data-sort=selectionSort]"),
+        this.animationTime
+      );
+    });
+    buttonInsertion.addEventListener("click", () => {
+      this.insertionSort.call(
+        document.querySelector("[data-sort=insertionSort]"),
+        this.animationTime
+      );
+    });
+    buttonQuick.addEventListener("click", () => {
+      this.quickSort.call(
+        document.querySelector("[data-sort=quickSort]"),
+        this.animationTime
+      );
+    });
+    buttonMerge.addEventListener("click", () => {
+      this.mergeSort.call(
+        document.querySelector("[data-sort=mergeSort]"),
         this.animationTime
       );
     });
