@@ -4,7 +4,7 @@ import sleep from "./sleep.js";
 export default class Sort {
   constructor(amount) {
     this.elements = Dom.createElements(amount);
-    this.animationTime = 10;
+    this.animationTime = 50;
   }
 
   init() {
@@ -20,7 +20,7 @@ export default class Sort {
     });
 
     // Adiciona a funcionalidade de iniciar todos os algoritmos ao ícone de play
-    const button = document.querySelector("[data-play]");
+    const button = document.querySelector("[data-play=all]");
     button.addEventListener("click", () => {
       const area = document.querySelector(".sort-area");
 

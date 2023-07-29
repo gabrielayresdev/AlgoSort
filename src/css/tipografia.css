@@ -1,0 +1,28 @@
+.text-h1 {
+  font-family: "Roboto Mono", monospace;
+  font-size: 4rem;
+  letter-spacing: 0px;
+  font-weight: 400;
+}
+
+.text-p {
+  font-family: "Roboto Mono", monospace;
+  font-size: 1rem;
+  letter-spacing: 0px;
+}
+
+.text-small {
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.9rem;
+  font-weight: 400;
+
+  letter-spacing: 0px;
+}
+
+strong {
+  font-weight: bold;
+}
+
+.text-blue {
+  color: #3863a0;
+}

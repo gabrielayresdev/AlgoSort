@@ -50,10 +50,11 @@ export default class Dom {
     // Array que será preenchido com os elementos a serem ordenados
     const array = [];
     // Define o tamanho de cada barra considerando que o tamanho máximo é igual ao tamanho do container - padding + [margem de 30px]
-    const { height, padding } = window.getComputedStyle(
-      document.querySelector(".sort-area")
+    const { width, padding } = window.getComputedStyle(
+      document.querySelector(".sort-container")
     );
-    const maxHeight = parseFloat(height) - parseFloat(padding) - 30;
+    const maxHeight = parseFloat(width) - parseFloat(padding) - 30;
+    console.log();
 
     // Preenche o array com os elementos de altura aleatória.
     for (let i = 0; i < amount; i++) {
