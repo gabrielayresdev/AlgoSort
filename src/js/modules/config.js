@@ -3,8 +3,8 @@ import Sort from "./Sort.js";
 import { getConfig, setAmount, setSpeed } from "./globalVariables.js";
 
 export default function initConfig() {
-  const amount = document.querySelectorAll(".menu-amount p");
-  const speed = document.querySelectorAll(".menu-speed p");
+  const amount = document.querySelectorAll(".menu-amount [data-config]");
+  const speed = document.querySelectorAll(".menu-speed [data-config]");
 
   function handleAmount() {
     const total = Number(this.innerHTML);

@@ -57,3 +57,20 @@
   width: 100%;
   background-color: #707070;
 }
+
+@media (max-width: 768px) {
+  .sort-area {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .sort-row,
+  .sort-head {
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr repeat(5, 3fr);
+  }
+
+  .sort-container,
+  .sort-head {
+    border: 1px solid #ddd;
+  }
+}

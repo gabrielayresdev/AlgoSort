@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   outline: none;
+  list-style-type: none;
 }
 
 i {
@@ -19,4 +20,36 @@ i:hover {
 .container {
   width: 60vw;
   margin: 0 auto;
+}
+
+.line {
+  display: block;
+  width: 100vw;
+  height: 1px;
+
+  margin: 1rem 0;
+
+  background-color: #eee;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  text-decoration: none;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    width: 80vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 90vw;
+  }
 }

@@ -5,6 +5,11 @@
   gap: 1rem;
 }
 
+.menu-amount li:first-child,
+.menu-speed li:first-child {
+  color: #000;
+}
+
 .text-link {
   color: #5192ec;
   cursor: pointer;
@@ -14,4 +19,25 @@
   display: flex;
   justify-content: space-between;
   gap: 10px;
+
+  margin-top: 1rem;
+  margin-bottom: 4rem;
+}
+
+@media (max-width: 768px) {
+  .menu-config {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
+  }
+
+  .menu-amount,
+  .menu-speed {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .menu-amount li:first-child,
+  .menu-speed li:first-child {
+    flex-basis: 100%;
+  }
 }

@@ -24,5 +24,11 @@ strong {
 }
 
 .text-blue {
-  color: #3863a0;
+  color: #368df0;
+}
+
+@media (max-width: 768px) {
+  .text-h1 {
+    font-size: 2.5rem;
+  }
 }

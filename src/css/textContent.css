@@ -1,8 +1,13 @@
+.title {
+  margin-top: 2rem;
+}
+
 .howToUse {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   justify-content: center;
+  word-wrap: normal;
 }
 
 .howToUse i {
@@ -17,9 +22,5 @@
   align-items: center;
   gap: 1rem;
 
-  margin-bottom: 4rem;
-}
-
-h1 {
-  margin: 0;
+  margin-bottom: 1rem;
 }

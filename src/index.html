@@ -17,7 +17,7 @@
   </head>
   <body>
     <div class="container textContent">
-      <h1 class="text-h1 text-blue">Algoritmos de Ordenação</h1>
+      <h1 class="text-h1 text-blue title">Algoritmos de Ordenação</h1>
       <p class="text-p">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
         cupiditate, adipisci cumque quibusdam in debitis! Doloremque laborum
@@ -25,6 +25,7 @@
         voluptas est deleniti quidem earum!
       </p>
       <div class="socialmedia"></div>
+      <span class="line"></span>
       <p class="text-small flex align-center howToUse">
         <span class="text-small text-blue">Como usar:</span> Pressione
         <strong>"Play all"</strong> ou escolha o botão
@@ -94,23 +95,30 @@
     </div>
 
     <div class="menu-config container">
-      <div class="menu-amount text-p text-link">
-        <p class="text-blue">Quantidade:</p>
-        <p>10</p>
-        <p>20</p>
-        <p>30</p>
-        <p>40</p>
-        <p>50</p>
-      </div>
-      <div class="menu-speed text-p text-link">
-        <p class="text-blue">Duração da comparação:</p>
-        <p>10ms</p>
-        <p>1s</p>
-        <p>2s</p>
-        <p>3s</p>
-        <p>10s</p>
-      </div>
+      <ul class="menu-amount text-p text-link">
+        <li class="text-blue">Quantidade:</li>
+        <li data-config>10</li>
+        <li data-config>20</li>
+        <li data-config>30</li>
+        <li data-config>40</li>
+        <li data-config>50</li>
+      </ul>
+      <ul class="menu-speed text-p text-link">
+        <li class="text-blue">Duração da comparação:</li>
+        <li data-config>10ms</li>
+        <li data-config>1s</li>
+        <li data-config>2s</li>
+        <li data-config>3s</li>
+        <li data-config>10s</li>
+      </ul>
     </div>
+
+    <footer>
+      <p>
+        Made with <i class="fa-solid fa-heart"></i> by
+        <a href="https://github.com/gabrielayresdev">Gabriel Ayres</a>
+      </p>
+    </footer>
 
     <script
       src="https://kit.fontawesome.com/2b9a5d9540.js"

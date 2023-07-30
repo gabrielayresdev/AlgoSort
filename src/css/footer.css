@@ -1,0 +1,34 @@
+footer {
+  height: 5rem;
+  background-color: #368df0;
+  color: #fff;
+
+  margin-top: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer i {
+  margin: 0 0.4rem;
+  color: #fa5757;
+}
+
+footer a {
+  padding: 15px 0;
+  margin: 0 6px;
+
+  color: #fff;
+}
+
+footer p {
+  display: flex;
+  align-items: center;
+}
+@media (max-width: 1024px) {
+  /* breakpoint para tablets */
+  footer {
+    height: 7rem;
+  }
+}
