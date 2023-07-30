@@ -1,0 +1,25 @@
+.howToUse {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.howToUse i {
+  margin: 0 10px;
+}
+
+.textContent {
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  margin-bottom: 4rem;
+}
+
+h1 {
+  margin: 0;
+}

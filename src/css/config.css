@@ -1,0 +1,17 @@
+.menu-amount,
+.menu-speed {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.text-link {
+  color: #5192ec;
+  cursor: pointer;
+}
+
+.menu-config {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
