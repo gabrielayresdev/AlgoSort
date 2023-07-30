@@ -45,8 +45,8 @@
 
 .sort-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(1px, 1fr));
-  gap: 2px;
+  grid-template-columns: repeat(auto-fit, minmax(0.5%, 1fr));
+  gap: 1%;
 
   align-items: flex-end;
   justify-content: space-between;
@@ -108,4 +108,24 @@ i:hover {
 
 h1 {
   margin: 0;
+}
+
+.menu-config {
+  display: flex;
+  justify-content: space-between;
+
+  width: 60vw;
+  margin: 0 auto;
+}
+
+.menu-amount,
+.menu-speed {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.text-link {
+  color: #5192ec;
+  cursor: pointer;
 }

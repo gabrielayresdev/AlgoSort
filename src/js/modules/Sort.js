@@ -2,9 +2,9 @@ import Dom from "./Dom.js";
 import sleep from "./sleep.js";
 
 export default class Sort {
-  constructor(amount) {
+  constructor({ amount, speed }) {
     this.elements = Dom.createElements(amount);
-    this.animationTime = 10;
+    this.animationTime = speed;
   }
 
   init() {
@@ -38,41 +38,48 @@ export default class Sort {
       );
     });
 
+    // Adiciona os eventos de click em cada botão de play
     const buttonBubble = document.querySelector("[data-play=bubbleSort]");
     const buttonSelection = document.querySelector("[data-play=selectionSort]");
     const buttonInsertion = document.querySelector("[data-play=insertionSort]");
     const buttonQuick = document.querySelector("[data-play=quickSort]");
     const buttonMerge = document.querySelector("[data-play=mergeSort]");
-    buttonBubble.addEventListener("click", () => {
+    // Arrow functions para manter o this do pai
+    const handleBubbleClick = () => {
       this.bubbleSort.call(
         document.querySelector("[data-sort=bubbleSort]"),
         this.animationTime
       );
-    });
-    buttonSelection.addEventListener("click", () => {
+    };
+    const handleSelectionClick = () => {
       this.selectionSort.call(
         document.querySelector("[data-sort=selectionSort]"),
         this.animationTime
       );
-    });
-    buttonInsertion.addEventListener("click", () => {
+    };
+    const handleInsertionClick = () => {
       this.insertionSort.call(
         document.querySelector("[data-sort=insertionSort]"),
         this.animationTime
       );
-    });
-    buttonQuick.addEventListener("click", () => {
+    };
+    const handleQuickClick = () => {
       this.quickSort.call(
         document.querySelector("[data-sort=quickSort]"),
         this.animationTime
       );
-    });
-    buttonMerge.addEventListener("click", () => {
+    };
+    const handleMergeClick = () => {
       this.mergeSort.call(
         document.querySelector("[data-sort=mergeSort]"),
         this.animationTime
       );
-    });
+    };
+    buttonBubble.addEventListener("click", handleBubbleClick);
+    buttonSelection.addEventListener("click", handleSelectionClick);
+    buttonInsertion.addEventListener("click", handleInsertionClick);
+    buttonQuick.addEventListener("click", handleQuickClick);
+    buttonMerge.addEventListener("click", handleMergeClick);
   }
 
   // Realiza o insertionSort dos elementos
@@ -90,6 +97,7 @@ export default class Sort {
       ) {
         // Troca os itens na UI
         await sleep(time);
+        console.log(time);
         Dom.swapItems(lista[j], lista[j + 1]);
 
         // Troca os itens no array

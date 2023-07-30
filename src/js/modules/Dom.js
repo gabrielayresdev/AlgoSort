@@ -1,10 +1,6 @@
 import sleep from "./sleep.js";
 
 export default class Dom {
-  constructor(element) {
-    this.element = element;
-  }
-
   // Troca dois elementos de lugar contanto que ambos estejam cercados por divs diferentes
   static swapItems(from, to) {
     const fromParent = from.parentElement;
@@ -50,11 +46,10 @@ export default class Dom {
     // Array que será preenchido com os elementos a serem ordenados
     const array = [];
     // Define o tamanho de cada barra considerando que o tamanho máximo é igual ao tamanho do container - padding + [margem de 30px]
-    const { width, padding } = window.getComputedStyle(
+    const { width } = window.getComputedStyle(
       document.querySelector(".sort-container")
     );
-    const maxHeight = parseFloat(width) - parseFloat(padding) - 30;
-    console.log();
+    const maxHeight = parseFloat(width) / 1.5;
 
     // Preenche o array com os elementos de altura aleatória.
     for (let i = 0; i < amount; i++) {
@@ -84,5 +79,19 @@ export default class Dom {
         container.appendChild(clone);
       });
     });
+  }
+
+  static deleteElements(selector) {
+    const elements = document.querySelectorAll(selector);
+
+    elements.forEach((item) => item.parentElement.remove());
+
+    const buttons = document.querySelectorAll("[data-play]");
+
+    buttons.forEach((btn) => {
+      btn.parentElement.appendChild(btn.cloneNode(true));
+      btn.remove();
+    });
+    console.log(buttons);
   }
 }
