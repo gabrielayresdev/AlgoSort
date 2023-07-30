@@ -1,5 +1,13 @@
 .title {
-  margin-top: 2rem;
+  margin-top: 1rem;
+}
+
+.source {
+  text-decoration: none;
+  color: #000;
+  font-weight: 300;
+  font-style: italic;
+  border-bottom: 1px solid #ddd;
 }
 
 .howToUse {
@@ -23,4 +31,26 @@
   gap: 1rem;
 
   margin-bottom: 1rem;
+}
+
+.socialmedia {
+  display: flex;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.socialmedia i {
+  border-right: 1px solid #ddd;
+
+  margin: 0;
+  padding: 0.5rem;
+}
+
+.socialmedia > i:first-child {
+  background-color: #002f4d;
+}
+
+.socialmedia i:last-child {
+  border: none;
 }
