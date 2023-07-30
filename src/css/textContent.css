@@ -40,6 +40,7 @@
   overflow: hidden;
 }
 
+.socialmedia a i,
 .socialmedia i {
   border-right: 1px solid #ddd;
 
@@ -51,6 +52,6 @@
   background-color: #002f4d;
 }
 
-.socialmedia i:last-child {
+.socialmedia a:last-child i {
   border: none;
 }
